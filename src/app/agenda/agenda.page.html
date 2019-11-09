@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agenda de plantões</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+
+      <ion-label>Categoria</ion-label>
+      <ion-select (ionChange)="buscarProdutos()" [(ngModel)]="categoriaSelecionada">
+        <ion-select-option value="" [selected]="true">Todas</ion-select-option>
+        <ion-select-option *ngFor="let categoria of categorias | async" [value]="categoria.key">{{ categoria.nome }}
+        </ion-select-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item *ngFor="let plantao of plantoes | async">
+
+      <ion-label text-wrap>
+        <h1>{{ plantao.dia }}</h1>
+        <h2>{{ plantao.materiaNome }}</h2>
+        <h2>{{ plantao.professorNome }}</h2>
+        <h2>{{ plantao.sala }}</h2>
+        <pre text-wrap>{{ plantao.hora_inicio }}</pre>
+        <pre text-wrap>{{ plantao.hora_fim }}</pre>
+
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

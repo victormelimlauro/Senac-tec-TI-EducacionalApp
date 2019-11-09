@@ -38,6 +38,46 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'agenda',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../../app/agenda/agenda.module').then(m => m.AgendaPageModule)
+          }
+        ]
+      },
+      {
+        path: 'minhas-presencas',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../minhas-presencas/minhas-presencas.module').then(m => m.MinhasPresencasPageModule)
+          }
+        ]
+      },
+      {
+        path: 'perfil',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../perfil/perfil.module').then(m => m.PerfilPageModule)
+          }
+        ]
+      },
+      {
+        path: 'comunicados',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../comunicados/comunicados.module').then(m => m.ComunicadosPageModule)
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
