@@ -15,7 +15,7 @@ export class AgendaService {
       if (categoriaKey) {
         return q.orderByChild('materiaKey').equalTo(categoriaKey);
       } else {
-        return q.orderByChild('dia');
+        return q.orderByChild('diaNum');
       }
     }).snapshotChanges().pipe(
       map(changes => {
