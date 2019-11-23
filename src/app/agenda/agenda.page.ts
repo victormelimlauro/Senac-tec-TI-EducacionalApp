@@ -13,8 +13,7 @@ export class AgendaPage implements OnInit {
   categorias: Observable<any[]>;
   categoriaSelecionada: string;
 
-  constructor(private router: Router, 
-    private agendaService:AgendaService) { }
+  constructor(private router: Router, private agendaService: AgendaService) { }
 
   ngOnInit() {
     this.plantoes = this.agendaService.getAll(null);
