@@ -2,6 +2,7 @@ import { ComunicadosService } from './shared/comunicados.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { stringify } from 'querystring';
 @Component({
   selector: 'app-comunicados',
   templateUrl: './comunicados.page.html',
@@ -20,10 +21,10 @@ export class ComunicadosPage implements OnInit {
   }
 
   getUsuarioTurma(){
-  comunicadosService.
+  this.comunicadosService.getTurmaUsuarioAtual();
   }
   buscarProdutos(){
-    // this.produtos = this.produtosService.getAll(this.categoriaSelecionada);
+    this.comunicadosService.getComunicadosPorTurma();
   }
 
 

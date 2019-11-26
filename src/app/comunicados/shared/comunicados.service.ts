@@ -24,17 +24,17 @@ export class ComunicadosService {
       })
     )
   }
-  
+
   getTurmaUsuarioAtual(){
     const path = `${FirebasePath.usuarios}${this.afAuth.auth.currentUser.uid}`;
     return this.db.list(path);
   }
 
-  getComunicadosPorTurma(turmaKey: string){
+  getComunicadosPorTurma(turmaKey: string = null){
     return this.db.list(FirebasePath.comunicado, ref => ref.orderByChild('turmaKey').equalTo('turmaKey'))
       .snapshotChanges().pipe(
         map(changes => {
-          return changes.map(m =>({key: m.key, ..m.payload.val() }));
+          return changes.map(m =>({key: m.payload.key, ...m.payload.val() }));
         })
       )
   }
