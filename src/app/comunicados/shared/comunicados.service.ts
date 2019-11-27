@@ -30,13 +30,22 @@ export class ComunicadosService {
     return this.db.list(path);
   }
 
-  getComunicadosPorTurma(turmaKey: string = null){
-    return this.db.list(FirebasePath.comunicado, ref => ref.orderByChild('turmaKey').equalTo('turmaKey'))
-      .snapshotChanges().pipe(
-        map(changes => {
-          return changes.map(m =>({key: m.payload.key, ...m.payload.val() }));
-        })
-      )
-  }
+  getDadosUsuarioAtual(){
+  return this.getTurmaUsuarioAtual()
+    .snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(m =>({key: m.payload.key, ...m.payload.val() }));
+      })
+    )
+}
+
+  // getComunicadosPorTurma(turmaKey: string = null){
+  //   return this.db.list(FirebasePath.comunicado, ref => ref.orderByChild('turmaKey').equalTo('turmaKey'))
+  //     .snapshotChanges().pipe(
+  //       map(changes => {
+  //         return changes.map(m =>({key: m.payload.key, ...m.payload.val() }));
+  //       })
+  //     )
+  // }
 
 }
