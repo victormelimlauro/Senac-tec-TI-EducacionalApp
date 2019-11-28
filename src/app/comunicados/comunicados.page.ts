@@ -14,6 +14,7 @@ export class ComunicadosPage implements OnInit {
   [x: string]: any;
   comunicados: Observable<any[]>;
   categorias: Observable<any[]>;
+  consultaComunicados: Observable<any[]>;
   categoriaSelecionada: string;
   turmaKey: string;
 
@@ -31,12 +32,10 @@ export class ComunicadosPage implements OnInit {
     subscribe.unsubscribe();
     console.log(dados);
     this.turmaKey = dados.atributoKey;
-    console.log(this.turmaKey);
-    this.comunicadosService.getComunicadosPorTurma(this.turmaKey)
-    .subscribe((comunicado: any) => {
-      subscribe.unsubscribe();
-    });
+    console.log(this.turmaKey);    
+    this.consultaComunicados = this.comunicadosService.getComunicadosPorTurma(this.turmaKey);
   });
+
 }
 
 }
