@@ -31,21 +31,21 @@ export class ComunicadosService {
   }
 
   getDadosUsuarioAtual(){
-  return this.getTurmaUsuarioAtual()
-    .snapshotChanges().pipe(
-      map(changes => {
-        return changes.map(m =>({key: m.payload.key, ...m.payload.val() }));
+    const path = `${FirebasePath.usuarios}${this.afAuth.auth.currentUser.uid}`;
+    return this.db.object(path).snapshotChanges().pipe(
+      map(change => {
+        return ({ key: change.key, ...change.payload.val() });
       })
-    )
+    );
 }
 
-  // getComunicadosPorTurma(turmaKey: string = null){
-  //   return this.db.list(FirebasePath.comunicado, ref => ref.orderByChild('turmaKey').equalTo('turmaKey'))
-  //     .snapshotChanges().pipe(
-  //       map(changes => {
-  //         return changes.map(m =>({key: m.payload.key, ...m.payload.val() }));
-  //       })
-  //     )
-  // }
+  getComunicadosPorTurma(turmaKey: string){
+    return this.db.list(FirebasePath.comunicado, ref => ref.orderByChild(turmaKey).equalTo(turmaKey))
+    .snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(m => ({ key: m.payload.key, ...m.payload.val() }))
+      })
+    );
+  }
 
 }

@@ -15,6 +15,7 @@ export class ComunicadosPage implements OnInit {
   comunicados: Observable<any[]>;
   categorias: Observable<any[]>;
   categoriaSelecionada: string;
+  turmaKey: string;
 
   constructor(private router: Router,
               private comunicadosService: ComunicadosService) { }
@@ -26,15 +27,16 @@ export class ComunicadosPage implements OnInit {
 
   getUsuarioDados(){
     const subscribe = this.comunicadosService.getDadosUsuarioAtual()
-    .subscribe((atributoKey: any) => {
+    .subscribe((dados: any) => {
     subscribe.unsubscribe();
-    this.atributoKey = atributoKey;
+    console.log(dados);
+    this.turmaKey = dados.atributoKey;
+    console.log(this.turmaKey);
+    this.comunicadosService.getComunicadosPorTurma(this.turmaKey)
+    .subscribe((comunicado: any) => {
+      subscribe.unsubscribe();
+    });
   });
 }
-  buscarComunicados(atributoKey){
-   // this.comunicadosService.getComunicadosPorTurma();
-  }
-
 
 }
-
