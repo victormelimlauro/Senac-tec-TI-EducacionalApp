@@ -1,12 +1,15 @@
+import { FirebasePath } from './../../../core/shared/firebase-path';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { map } from 'rxjs/operators';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
 
-  constructor(private afAuth:AngularFireAuth) { }
+  constructor(private afAuth:AngularFireAuth, private db: AngularFireDatabase) { }
 
   criarConta(usuario: any) {
     return new Promise((resolve, reject) => {
@@ -87,4 +90,13 @@ export class UsuariosService {
     return mensagem;
   }
     
+  getDadosUsuarioAtual(){
+    const path = `${FirebasePath.usuarios}${this.afAuth.auth.currentUser.uid}`;
+    return this.db.object(path).snapshotChanges().pipe(
+      map(change => {
+        return ({ key: change.key, ...change.payload.val() });
+      })
+    );
+}
+
 }

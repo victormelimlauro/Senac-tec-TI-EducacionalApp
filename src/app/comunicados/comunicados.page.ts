@@ -32,7 +32,7 @@ export class ComunicadosPage implements OnInit {
     subscribe.unsubscribe();
     console.log(dados);
     this.turmaKey = dados.atributoKey;
-    console.log(this.turmaKey);    
+    console.log(this.turmaKey);
     this.consultaComunicados = this.comunicadosService.getComunicadosPorTurma(this.turmaKey);
   });
 
