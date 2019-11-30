@@ -11,7 +11,7 @@ import { ActivatedRoute} from '@angular/router';
 })
 export class PerfilPage implements OnInit {
   user: any = {};
-  puxaDadosUsuarioAtual: Observable<any[]>;
+  usuarioAtual: Observable<any[]>;
   atributo: string;
   turmaNome: string;
     constructor(private usuariosService: UsuariosService,

@@ -50,8 +50,7 @@ export class ComunicadosService {
   getComunicadosPorTurma(turmaKey: string) {
     return this.db.list(FirebasePath.comunicado, q => {
          return q.orderByChild('turmaKey').equalTo(turmaKey);
-        })
-      .snapshotChanges().pipe(
+        }) .snapshotChanges().pipe(
       map(changes => {
         return changes.map(m => ({key: m.payload.key, ...m.payload.val() }));
       })
