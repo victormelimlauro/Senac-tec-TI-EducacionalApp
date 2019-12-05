@@ -20,12 +20,12 @@
     <ion-item *ngFor="let plantao of plantoes | async">
 
       <ion-label text-wrap>
-        <h1>{{ plantao.dia }}</h1>
-        <h2>{{ plantao.materiaNome }}</h2>
-        <h2>{{ plantao.professorNome }}</h2>
-        <h2>{{ plantao.sala }}</h2>
-        <pre text-wrap>{{ plantao.hora_inicio }}</pre>
-        <pre text-wrap>{{ plantao.hora_fim }}</pre>
+        <h1>Dia: {{ plantao.dia }}</h1>
+        <h2>Matéria: {{ plantao.materiaNome }}</h2>
+        <h2>Professor: {{ plantao.professorNome }}</h2>
+        <h2>Sala: {{ plantao.sala }}</h2>
+        <pre text-wrap>Hora inicio: {{ plantao.hora_inicio }}</pre>
+        <pre text-wrap>Hora fim: {{ plantao.hora_fim }}</pre>
 
       </ion-label>
     </ion-item>
