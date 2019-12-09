@@ -14,11 +14,12 @@ export class MinhasPresencasService {
 
 getPresencas(usuario: string=null) {
   return this.db.list(FirebasePath.plantoes_visitas, q => {
-    if (usuario) {
-      return q.orderByChild('key').equalTo(this.afAuth.auth.currentUser.uid);
-    } else {
-      return q.orderByChild('diaNum');
-    }
+    // if (usuario) {
+      // return q.orderByChild('key').equalTo(this.afAuth.auth.currentUser.uid);
+    // } 
+    // else {
+      return q.orderByChild('frmKeyAluno').equalTo(this.afAuth.auth.currentUser.uid);
+    // }
   }).snapshotChanges().pipe(
     map(changes => {
       return changes.map(m => ({key: m.payload.key, ...m.payload.val() }));
